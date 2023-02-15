@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <title th:text="#{menu.title}">Thymeleaf Demo</title>
+</head>
+
+<body>
+
+<div th:insert="~{fragments/header :: header}"></div>
+
+<h1>Menu Page</h1>
+
+<ul>
+  <li>
+    <a th:href="@{/products}"
+       th:text="#{menu.products_btn}">
+    </a>
+  </li>
+  <br>
+  <li>
+    <form th:action="@{/products/id}" th:method="get">
+      <label>View Product by Id=>
+        <input type="number" name="id"/>
+      </label>
+    </form>
+  </li>
+  <br>
+  <li>
+    <form th:action="@{/products}" th:method="delete">
+      <label>Delete All:
+        <input type="submit" value="Delete All"/>
+      </label>
+      <input type="hidden" name="_method" value="delete">
+    </form>
+  </li>
+  <br>
+  <li>
+    <form th:action="@{/products/id}" th:method="delete">
+      <label>Delete Product by Id=>
+        <input type="number" name="id"/>
+      </label>
+      <input type="hidden" name="_method" value="delete">
+    </form>
+  </li>
+  <br>
+  <li>
+    <a th:href="@{/products/add}"
+       th:text="#{menu.add_product_btn}">
+    </a>
+  </li>
+</ul>
+
+<div th:insert="~{fragments/footer :: footer}"></div>
+</body>
+
+</html>

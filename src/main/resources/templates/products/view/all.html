@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <title th:text="#{products.title}">Products Page</title>
+</head>
+
+<body>
+<div th:insert="~{fragments/header :: header}"></div>
+<br>
+<a th:href="@{/menu}" th:text="#{product.menu.btn}"></a>
+<br>
+<div>
+  <ul th:each="product : ${listProducts}">
+    <li>
+      <table>
+        <td>
+          <h2 style="color: darkred" th:text="${product.getId()}"></h2>
+        </td>
+        <td>
+          <h2 style="color: darkred" th:text="${product.getName()}"></h2>
+        </td>
+        <td>
+          <h2 style="color: darkred" th:text="${product.getCost()}"></h2>
+        </td>
+      </table>
+    </li>
+  </ul>
+</div>
+
+
+<div th:insert="~{fragments/footer :: footer}"></div>
+</body>
+
+</html>

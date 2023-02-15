@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+  <property name="LOG_FILE"
+    value="${LOG_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}/}spring.log}"/>
+  <include resource="org/springframework/boot/logging/logback/file-appender.xml"/>
+  <include resource="org/springframework/boot/logging/logback/default.xml"/>
+  <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
+
+  <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} |-xxxx-| %-10.10thread | %5p | %-36.36logger{36} | %m%n
+      </pattern>
+    </encoder>
+  </appender>
+
+  <property name="LOG_DIR" value="./log"/>
+  <appender name="FILE2" class="ch.qos.logback.core.FileAppender">
+    <file>${LOG_DIR}/tests.log</file>
+    <encoder>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} |-xxxx-| %-10.10thread | %5p | %-36.36logger{36} | %m%n
+      </pattern>
+    </encoder>
+  </appender>
+
+  <root level="INFO">
+    <appender-ref ref="CONSOLE"/>
+    <appender-ref ref="FILE2"/>
+  </root>
+
+  <logger name="org.springframework.web" level="INFO"/>
+
+</configuration>
